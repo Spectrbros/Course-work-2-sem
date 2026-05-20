@@ -7,11 +7,11 @@ using namespace chrono;
 
 
 
-int tree_create_random(int num) {
+int tree_create_random(AvlTree& tree, int num_elements) {
     srand(time(NULL));
     auto start = steady_clock::now();
     
-    for (int i = 0; i < num; i++) {
+    for (int i = 0; i < num_elements; i++) {
         //tree.add(rand() % 199 - 99)
     }
 
@@ -21,7 +21,7 @@ int tree_create_random(int num) {
     return result.count();
 }
 
-int tree_create_hand(vector<int>& elements) {
+int tree_create_hand(AvlTree& tree,vector<int>& elements) {
     srand(time(NULL));
     auto start = steady_clock::now();
 
@@ -33,4 +33,16 @@ int tree_create_hand(vector<int>& elements) {
     auto result = duration_cast<nanoseconds>(end - start);
 
     return result.count();
+}
+
+int tree_insert_element(AvlTree& tree, int value) {
+
+}
+
+int tree_delete_element(AvlTree& tree, int value) {
+
+}
+
+int tree_search_element(AvlTree& tree, int value) {
+
 }

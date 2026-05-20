@@ -56,9 +56,11 @@ void menu_commands(int choice, AvlTree& tree) {
         waiting();
         break;
     case 3:
+        tree_operations_menu();
         waiting();
         break;
     case 4:
+        tree_tasks_menu();
         waiting();
         break;
     default:
@@ -88,10 +90,10 @@ void create_tree_menu(AvlTree& tree) {
                         int num_elements = 0;
                         cout << BLUE << "Введите количество элементов: " << RESET;
                         if (cin >> num_elements && num_elements > 0) {
-                            int tree_time_create = tree_create_random(num_elements);
+                            int tree_time_create = tree_create_random(tree, num_elements);
                             stream_clear();
                             cout << GREEN << "АВЛ-дерево успешно сформировано за " << RED << tree_time_create << " нс" << RESET << endl;
-                            cout << GREEN << "Общее время балансировки дерева: " << RED << " нс" << RESET;
+                            //cout << GREEN << "Общее время балансировки дерева: " << RED << " нс" << RESET;
                         }
                         else {
                             clear_screen();
@@ -109,10 +111,10 @@ void create_tree_menu(AvlTree& tree) {
                     while (cin >> temp) {
                         elements.push_back(temp);
                     }
-                    int tree_time_create = tree_create_hand(elements);
+                    int tree_time_create = tree_create_hand(tree, elements);
                     stream_clear();
                     cout << GREEN << "АВЛ-дерево успешно сформировано за " << RED << tree_time_create << " нс" << RESET << endl;
-                    cout << GREEN << "Общее время балансировки дерева: " << RED << " нс" << RESET;
+                    //cout << GREEN << "Общее время балансировки дерева: " << RED << " нс" << RESET;
                     break;
                 }
             }
@@ -125,17 +127,21 @@ void create_tree_menu(AvlTree& tree) {
     }
 }
 
-void output_tree_menu() {
+void output_tree_menu(AvlTree& tree) {
     //if (!tree.is_fill) {
-    cout << RED << "АВЛ-дерево ещё не создано!" << RESET;
-    waiting();
+    //cout << RED << "АВЛ-дерево ещё не создано!" << RESET;
+    //return;
     //}
     clear_screen();
     cout << BLUE << "Текущее АВД-дерево:" << RESET << endl;
     //tree.output()
 }
 
-void tree_operations_menu() {
+void tree_operations_menu(AvlTree& tree) {
+    //if (!tree.is_fill) {
+    //cout << RED << "АВЛ-дерево ещё не создано!" << RESET;
+    //return;
+    //}
     while (true) {
         clear_screen();
         cout << BLUE << "Выберите действие над АВЛ-деревом:" << RESET << endl;
@@ -150,34 +156,71 @@ void tree_operations_menu() {
             case 1: {
                 while (true) {
                     clear_screen();
-                    int num_elements = 0;
-                    cout << BLUE << "Введите количество элементов: " << RESET;
-                    if (cin >> num_elements && num_elements > 0) {
-                        int tree_time_create = tree_create_random(num_elements);
-                        stream_clear();
-                        cout << GREEN << "АВЛ-дерево успешно сформировано за " << RED << tree_time_create << " нс" << RESET << endl;
-                        cout << GREEN << "Общее время балансировки дерева: " << RED << " нс" << RESET;
+                    //cout << RED << "АВД-дерево до изменения:" << RESET << endl;
+                    //tree.output()
+                    //cout << endl;
+                    cout << BLUE << "Введите число для вставки: " << RESET;
+                    int value = 0;
+                    if (cin >> value) {
+                        clear_screen();
+                        int tree_time_operation = tree_insert_element(tree, value);
+                        //cout << RED << "АВД-дерево после изменения:" << RESET << endl;
+                        //tree.output()
+                        //cout << endl;
+                        cout << GREEN << "Время вставки элемента: " << RED << tree_time_operation << " нс" << RESET << endl;
+                        //cout << GREEN << "Время балансировки дерева: " << RED << " нс" << RESET;
                     }
                     else {
                         clear_screen();
-                        cout << RED << "Введите число больше 0!\n" << RESET << endl;
+                        cout << RED << "Введите корректно число!\n" << RESET << endl;
                         error_detention();
                     }
                 }
                 break;
             }
             case 2: {
-                clear_screen();
-                vector<int> elements;
-                cout << BLUE << "Введите числа (введите любую букву, чтобы закончить): " << RESET;
-                int temp = 0;
-                while (cin >> temp) {
-                    elements.push_back(temp);
+                while (true) {
+                    clear_screen();
+                    //cout << RED << "АВД-дерево до изменения:" << RESET << endl;
+                    //tree.output()
+                    //cout << endl;
+                    cout << BLUE << "Введите число для удаления: " << RESET;
+                    int value = 0;
+                    if (cin >> value) {
+                        clear_screen();
+                        int tree_time_operation = tree_delete_element(tree, value);
+                        //cout << RED << "АВД-дерево после изменения:" << RESET << endl;
+                        //tree.output()
+                        //cout << endl;
+                        cout << GREEN << "Время удаления элемента: " << RED << tree_time_operation << " нс" << RESET << endl;
+                        //cout << GREEN << "Время балансировки дерева: " << RED << " нс" << RESET;
+                    }
+                    else {
+                        clear_screen();
+                        cout << RED << "Введите корректно число!\n" << RESET << endl;
+                        error_detention();
+                    }
                 }
-                int tree_time_create = tree_create_hand(elements);
-                stream_clear();
-                cout << GREEN << "АВЛ-дерево успешно сформировано за " << RED << tree_time_create << " нс" << RESET << endl;
-                cout << GREEN << "Общее время балансировки дерева: " << RED << " нс" << RESET;
+                break;
+            }
+            case 3: {
+                while (true) {
+                    clear_screen();
+                    cout << BLUE << "Введите число для поиска: " << RESET;
+                    int value = 0;
+                    if (cin >> value) {
+                        clear_screen();
+                        cout << endl;
+                        int tree_time_operation = tree_search_element(tree, value);
+                        cout << endl;
+                        cout << GREEN << "Время поиска элемента: " << RED << tree_time_operation << " нс" << RESET << endl;
+                    }
+                    else {
+                        clear_screen();
+                        cout << RED << "Введите корректно число!\n" << RESET << endl;
+                        error_detention();
+                    }
+                }
                 break;
             }
             }
