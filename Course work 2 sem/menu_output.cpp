@@ -1,11 +1,11 @@
-#include "service_functions.h"
+ï»¿#include "service_functions.h"
 #include "menu_functions.h"
 #include "menu_output.h"
 #include "avl_tree.h"
 #include <vector>
 using namespace std;
 
-// Âûâîä ìåíþ
+// Ð’Ñ‹Ð²Ð¾Ð´ Ð¼ÐµÐ½ÑŽ
 void print_menu(AvlTree& tree, bool& is_should_exit) {
     lab_page();
     command_choice(tree, is_should_exit);
@@ -14,22 +14,22 @@ void print_menu(AvlTree& tree, bool& is_should_exit) {
 
 void lab_page() {
     cout << "|==================================|" << endl;
-    cout << "|   " << BLUE << "Êóðñîâàÿ ðàáîòà. ÀÂË-äåðåâî." << RESET << "   |" << endl;
+    cout << "|   " << BLUE << "ÐšÑƒÑ€ÑÐ¾Ð²Ð°Ñ Ñ€Ð°Ð±Ð¾Ñ‚Ð°. ÐÐ’Ð›-Ð´ÐµÑ€ÐµÐ²Ð¾." << RESET << "   |" << endl;
     cout << "|==================================|" << endl;
-    cout << "| " << GREEN << "1) Ñôîðìèðîâàòü äåðåâî" << RESET << "           |" << endl;
-    cout << "| " << GREEN << "2) Âûâîä äåðåâà" << RESET << "                  |" << endl;
-    cout << "| " << GREEN << "3) Îïåðàöèè íàä äåðåâîì" << RESET << "          |" << endl;
-    cout << "| " << GREEN << "4) Ñãåíåðèðîâàòü çàäàíèÿ" << RESET << "         |" << endl;
+    cout << "| " << GREEN << "1) Ð¡Ñ„Ð¾Ñ€Ð¼Ð¸Ñ€Ð¾Ð²Ð°Ñ‚ÑŒ Ð´ÐµÑ€ÐµÐ²Ð¾" << RESET << "           |" << endl;
+    cout << "| " << GREEN << "2) Ð’Ñ‹Ð²Ð¾Ð´ Ð´ÐµÑ€ÐµÐ²Ð°" << RESET << "                  |" << endl;
+    cout << "| " << GREEN << "3) ÐžÐ¿ÐµÑ€Ð°Ñ†Ð¸Ð¸ Ð½Ð°Ð´ Ð´ÐµÑ€ÐµÐ²Ð¾Ð¼" << RESET << "          |" << endl;
+    cout << "| " << GREEN << "4) Ð¡Ð³ÐµÐ½ÐµÑ€Ð¸Ñ€Ð¾Ð²Ð°Ñ‚ÑŒ Ð·Ð°Ð´Ð°Ð½Ð¸Ñ" << RESET << "         |" << endl;
     cout << "|                                  |" << endl;
-    cout << "| " << RED << "0) Âûõîä è î÷èñòêà ïàìÿòè" << RESET << "        |" << endl;
+    cout << "| " << RED << "0) Ð’Ñ‹Ñ…Ð¾Ð´ Ð¸ Ð¾Ñ‡Ð¸ÑÑ‚ÐºÐ° Ð¿Ð°Ð¼ÑÑ‚Ð¸" << RESET << "        |" << endl;
     cout << "|==================================|" << endl;
-    cout << "|   " << BLUE << "Êóðñîâàÿ ðàáîòà. ÀÂË-äåðåâî." << RESET << "   |" << endl;
+    cout << "|   " << BLUE << "ÐšÑƒÑ€ÑÐ¾Ð²Ð°Ñ Ñ€Ð°Ð±Ð¾Ñ‚Ð°. ÐÐ’Ð›-Ð´ÐµÑ€ÐµÐ²Ð¾." << RESET << "   |" << endl;
     cout << "|==================================|" << endl;
     cout << endl;
 }
 
 void command_choice(AvlTree& tree, bool& is_should_exit) {
-    cout << BLUE << "Ââåäèòå íîìåð êîìàíäû: " << RESET;
+    cout << BLUE << "Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ Ð½Ð¾Ð¼ÐµÑ€ ÐºÐ¾Ð¼Ð°Ð½Ð´Ñ‹: " << RESET;
     int user_choice;
     if (cin >> user_choice) {
         clear_stream();
@@ -37,7 +37,7 @@ void command_choice(AvlTree& tree, bool& is_should_exit) {
     }
     else {
         clear_screen();
-        cout << RED << "Îøèáêà! Ââåäèòå íîìåð êîìàíäû îò 0 äî 4!\n" << RESET << endl;
+        cout << RED << "ÐžÑˆÐ¸Ð±ÐºÐ°! Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ Ð½Ð¾Ð¼ÐµÑ€ ÐºÐ¾Ð¼Ð°Ð½Ð´Ñ‹ Ð¾Ñ‚ 0 Ð´Ð¾ 4!\n" << RESET << endl;
         error_detention();
     }
 }
@@ -47,7 +47,7 @@ void menu_commands(AvlTree& tree, int choice, bool& is_should_exit) {
     switch (choice) {
     case 0:
         tree.clear_all();
-        cout << GREEN << "Ïàìÿòü î÷èùåíà, ïðîãðàììà çàâåðøåíà!" << RESET << endl;
+        cout << GREEN << "ÐŸÐ°Ð¼ÑÑ‚ÑŒ Ð¾Ñ‡Ð¸Ñ‰ÐµÐ½Ð°, Ð¿Ñ€Ð¾Ð³Ñ€Ð°Ð¼Ð¼Ð° Ð·Ð°Ð²ÐµÑ€ÑˆÐµÐ½Ð°!" << RESET << endl;
         waiting();
         is_should_exit = 1;
         break;
@@ -68,7 +68,7 @@ void menu_commands(AvlTree& tree, int choice, bool& is_should_exit) {
         waiting();
         break;
     default:
-        cout << RED << "Îøèáêà! Ââåäèòå íîìåð êîìàíäû îò 0 äî 4!\n" << RESET << endl;
+        cout << RED << "ÐžÑˆÐ¸Ð±ÐºÐ°! Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ Ð½Ð¾Ð¼ÐµÑ€ ÐºÐ¾Ð¼Ð°Ð½Ð´Ñ‹ Ð¾Ñ‚ 0 Ð´Ð¾ 4!\n" << RESET << endl;
         waiting();
         break;
     }
@@ -80,10 +80,10 @@ void create_tree_menu(AvlTree& tree) {
     }
     while (true) {
         clear_screen();
-        cout << BLUE << "Ñôîðìèðîâàòü ÀÂË-äåðåâî è çàïîëíèòü:" << RESET << endl;
-        cout << GREEN << "1) Ñëó÷àéíûìè ÷èñëàìè îò -99 äî 99" << RESET << endl;
-        cout << GREEN << "2) Âðó÷íóþ" << RESET << endl;
-        cout << BLUE << "Âûáîð:" << RESET;
+        cout << BLUE << "Ð¡Ñ„Ð¾Ñ€Ð¼Ð¸Ñ€Ð¾Ð²Ð°Ñ‚ÑŒ ÐÐ’Ð›-Ð´ÐµÑ€ÐµÐ²Ð¾ Ð¸ Ð·Ð°Ð¿Ð¾Ð»Ð½Ð¸Ñ‚ÑŒ:" << RESET << endl;
+        cout << GREEN << "1) Ð¡Ð»ÑƒÑ‡Ð°Ð¹Ð½Ñ‹Ð¼Ð¸ Ñ‡Ð¸ÑÐ»Ð°Ð¼Ð¸ Ð¾Ñ‚ -99 Ð´Ð¾ 99" << RESET << endl;
+        cout << GREEN << "2) Ð’Ñ€ÑƒÑ‡Ð½ÑƒÑŽ" << RESET << endl;
+        cout << BLUE << "Ð’Ñ‹Ð±Ð¾Ñ€:" << RESET;
         int user_choice;
         if (cin >> user_choice && (user_choice == 1 || user_choice == 2)) {
             clear_stream();
@@ -92,17 +92,17 @@ void create_tree_menu(AvlTree& tree) {
                     while (true) {
                         clear_screen();
                         int num_elements;
-                        cout << BLUE << "Ââåäèòå êîëè÷åñòâî ýëåìåíòîâ: " << RESET;
+                        cout << BLUE << "Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ ÐºÐ¾Ð»Ð¸Ñ‡ÐµÑÑ‚Ð²Ð¾ ÑÐ»ÐµÐ¼ÐµÐ½Ñ‚Ð¾Ð²: " << RESET;
                         if (cin >> num_elements && num_elements > 0) {
                             clear_stream();
                             int tree_time_create = tree_create_random(tree, num_elements);
-                            cout << GREEN << "ÀÂË-äåðåâî óñïåøíî ñôîðìèðîâàíî çà " << RED << tree_time_create << " íñ" << RESET << endl;
-                            //cout << GREEN << "Îáùåå âðåìÿ áàëàíñèðîâêè äåðåâà: " << RED << " íñ" << RESET;
+                            cout << GREEN << "ÐÐ’Ð›-Ð´ÐµÑ€ÐµÐ²Ð¾ ÑƒÑÐ¿ÐµÑˆÐ½Ð¾ ÑÑ„Ð¾Ñ€Ð¼Ð¸Ñ€Ð¾Ð²Ð°Ð½Ð¾ Ð·Ð° " << RED << tree_time_create << " Ð½Ñ" << RESET << endl;
+                            //cout << GREEN << "ÐžÐ±Ñ‰ÐµÐµ Ð²Ñ€ÐµÐ¼Ñ Ð±Ð°Ð»Ð°Ð½ÑÐ¸Ñ€Ð¾Ð²ÐºÐ¸ Ð´ÐµÑ€ÐµÐ²Ð°: " << RED << " Ð½Ñ" << RESET;
                             return;
                         }
                         else {
                             clear_screen();
-                            cout << RED << "Ââåäèòå ÷èñëî áîëüøå 0!\n" << RESET << endl;
+                            cout << RED << "Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ Ñ‡Ð¸ÑÐ»Ð¾ Ð±Ð¾Ð»ÑŒÑˆÐµ 0!\n" << RESET << endl;
                             error_detention();
                         }
                     }
@@ -111,15 +111,15 @@ void create_tree_menu(AvlTree& tree) {
                 case 2: {
                     clear_screen();
                     vector<int> elements;
-                    cout << BLUE << "Ââåäèòå ÷èñëà (ââåäèòå ëþáóþ áóêâó, ÷òîáû çàêîí÷èòü): " << RESET;
+                    cout << BLUE << "Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ Ñ‡Ð¸ÑÐ»Ð° (Ð²Ð²ÐµÐ´Ð¸Ñ‚Ðµ Ð»ÑŽÐ±ÑƒÑŽ Ð±ÑƒÐºÐ²Ñƒ, Ñ‡Ñ‚Ð¾Ð±Ñ‹ Ð·Ð°ÐºÐ¾Ð½Ñ‡Ð¸Ñ‚ÑŒ): " << RESET;
                     int temp;
                     while (cin >> temp) {
                         elements.push_back(temp);
                     }
                     clear_stream();
                     int tree_time_create = tree_create_hand(tree, elements);
-                    cout << GREEN << "ÀÂË-äåðåâî óñïåøíî ñôîðìèðîâàíî çà " << RED << tree_time_create << " íñ" << RESET << endl;
-                    //cout << GREEN << "Îáùåå âðåìÿ áàëàíñèðîâêè äåðåâà: " << RED << " íñ" << RESET;
+                    cout << GREEN << "ÐÐ’Ð›-Ð´ÐµÑ€ÐµÐ²Ð¾ ÑƒÑÐ¿ÐµÑˆÐ½Ð¾ ÑÑ„Ð¾Ñ€Ð¼Ð¸Ñ€Ð¾Ð²Ð°Ð½Ð¾ Ð·Ð° " << RED << tree_time_create << " Ð½Ñ" << RESET << endl;
+                    //cout << GREEN << "ÐžÐ±Ñ‰ÐµÐµ Ð²Ñ€ÐµÐ¼Ñ Ð±Ð°Ð»Ð°Ð½ÑÐ¸Ñ€Ð¾Ð²ÐºÐ¸ Ð´ÐµÑ€ÐµÐ²Ð°: " << RED << " Ð½Ñ" << RESET;
                     return;
                     break;
                 }
@@ -127,7 +127,7 @@ void create_tree_menu(AvlTree& tree) {
         }
         else {
             clear_screen();
-            cout << RED << "Îøèáêà! Ââåäèòå íîìåð êîìàíäû îò 1 äî 2!\n" << RESET << endl;
+            cout << RED << "ÐžÑˆÐ¸Ð±ÐºÐ°! Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ Ð½Ð¾Ð¼ÐµÑ€ ÐºÐ¾Ð¼Ð°Ð½Ð´Ñ‹ Ð¾Ñ‚ 1 Ð´Ð¾ 2!\n" << RESET << endl;
             error_detention();
         }
     }
@@ -135,25 +135,25 @@ void create_tree_menu(AvlTree& tree) {
 
 void print_tree_menu(AvlTree& tree) {
     if (!tree.is_created()) {
-    cout << RED << "ÀÂË-äåðåâî åù¸ íå ñîçäàíî!" << RESET;
+    cout << RED << "ÐÐ’Ð›-Ð´ÐµÑ€ÐµÐ²Ð¾ ÐµÑ‰Ñ‘ Ð½Ðµ ÑÐ¾Ð·Ð´Ð°Ð½Ð¾!" << RESET;
     return;
     }
-    cout << BLUE << "Òåêóùåå ÀÂË-äåðåâî:" << RESET << endl;
+    cout << BLUE << "Ð¢ÐµÐºÑƒÑ‰ÐµÐµ ÐÐ’Ð›-Ð´ÐµÑ€ÐµÐ²Ð¾:" << RESET << endl;
     //tree.print()
 }
 
 void tree_operations_menu(AvlTree& tree) {
     if (!tree.is_created()) {
-    cout << RED << "ÀÂË-äåðåâî åù¸ íå ñîçäàíî!" << RESET;
+    cout << RED << "ÐÐ’Ð›-Ð´ÐµÑ€ÐµÐ²Ð¾ ÐµÑ‰Ñ‘ Ð½Ðµ ÑÐ¾Ð·Ð´Ð°Ð½Ð¾!" << RESET;
     return;
     }
     while (true) {
         clear_screen();
-        cout << BLUE << "Âûáåðèòå äåéñòâèå íàä ÀÂË-äåðåâîì:" << RESET << endl;
-        cout << GREEN << "1) Âñòàâêà ýëåìåíòà" << RESET << endl;
-        cout << GREEN << "2) Óäàëåíèå ýëåìåíòà" << RESET << endl;
-        cout << GREEN << "3) Ïîëó÷åíèå ýëåìåíòà" << RESET << endl;
-        cout << BLUE << "Âûáîð:" << RESET;
+        cout << BLUE << "Ð’Ñ‹Ð±ÐµÑ€Ð¸Ñ‚Ðµ Ð´ÐµÐ¹ÑÑ‚Ð²Ð¸Ðµ Ð½Ð°Ð´ ÐÐ’Ð›-Ð´ÐµÑ€ÐµÐ²Ð¾Ð¼:" << RESET << endl;
+        cout << GREEN << "1) Ð’ÑÑ‚Ð°Ð²ÐºÐ° ÑÐ»ÐµÐ¼ÐµÐ½Ñ‚Ð°" << RESET << endl;
+        cout << GREEN << "2) Ð£Ð´Ð°Ð»ÐµÐ½Ð¸Ðµ ÑÐ»ÐµÐ¼ÐµÐ½Ñ‚Ð°" << RESET << endl;
+        cout << GREEN << "3) ÐŸÐ¾Ð»ÑƒÑ‡ÐµÐ½Ð¸Ðµ ÑÐ»ÐµÐ¼ÐµÐ½Ñ‚Ð°" << RESET << endl;
+        cout << BLUE << "Ð’Ñ‹Ð±Ð¾Ñ€:" << RESET;
         int user_choice;
         if (cin >> user_choice && (user_choice == 1 || user_choice == 2 || user_choice == 3)) {
             clear_stream();
@@ -161,25 +161,25 @@ void tree_operations_menu(AvlTree& tree) {
             case 1: {
                 while (true) {
                     clear_screen();
-                    //cout << RED << "ÀÂË-äåðåâî äî èçìåíåíèÿ:" << RESET << endl;
+                    //cout << RED << "ÐÐ’Ð›-Ð´ÐµÑ€ÐµÐ²Ð¾ Ð´Ð¾ Ð¸Ð·Ð¼ÐµÐ½ÐµÐ½Ð¸Ñ:" << RESET << endl;
                     //tree.print()
                     //cout << endl;
-                    cout << BLUE << "Ââåäèòå ÷èñëî äëÿ âñòàâêè: " << RESET;
+                    cout << BLUE << "Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ Ñ‡Ð¸ÑÐ»Ð¾ Ð´Ð»Ñ Ð²ÑÑ‚Ð°Ð²ÐºÐ¸: " << RESET;
                     int value;
                     if (cin >> value) {
                         clear_stream();
                         clear_screen();
                         int tree_time_operation = tree_insert_element(tree, value);
-                        //cout << RED << "ÀÂË-äåðåâî ïîñëå èçìåíåíèÿ:" << RESET << endl;
+                        //cout << RED << "ÐÐ’Ð›-Ð´ÐµÑ€ÐµÐ²Ð¾ Ð¿Ð¾ÑÐ»Ðµ Ð¸Ð·Ð¼ÐµÐ½ÐµÐ½Ð¸Ñ:" << RESET << endl;
                         //tree.print()
                         //cout << endl;
-                        cout << GREEN << "Âðåìÿ âñòàâêè ýëåìåíòà: " << RED << tree_time_operation << " íñ" << RESET << endl;
-                        //cout << GREEN << "Âðåìÿ áàëàíñèðîâêè äåðåâà: " << RED << " íñ" << RESET;
+                        cout << GREEN << "Ð’Ñ€ÐµÐ¼Ñ Ð²ÑÑ‚Ð°Ð²ÐºÐ¸ ÑÐ»ÐµÐ¼ÐµÐ½Ñ‚Ð°: " << RED << tree_time_operation << " Ð½Ñ" << RESET << endl;
+                        //cout << GREEN << "Ð’Ñ€ÐµÐ¼Ñ Ð±Ð°Ð»Ð°Ð½ÑÐ¸Ñ€Ð¾Ð²ÐºÐ¸ Ð´ÐµÑ€ÐµÐ²Ð°: " << RED << " Ð½Ñ" << RESET;
                         return;
                     }
                     else {
                         clear_screen();
-                        cout << RED << "Ââåäèòå êîððåêòíî ÷èñëî!\n" << RESET << endl;
+                        cout << RED << "Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ ÐºÐ¾Ñ€Ñ€ÐµÐºÑ‚Ð½Ð¾ Ñ‡Ð¸ÑÐ»Ð¾!\n" << RESET << endl;
                         error_detention();
                     }
                 }
@@ -188,25 +188,25 @@ void tree_operations_menu(AvlTree& tree) {
             case 2: {
                 while (true) {
                     clear_screen();
-                    //cout << RED << "ÀÂË-äåðåâî äî èçìåíåíèÿ:" << RESET << endl;
+                    //cout << RED << "ÐÐ’Ð›-Ð´ÐµÑ€ÐµÐ²Ð¾ Ð´Ð¾ Ð¸Ð·Ð¼ÐµÐ½ÐµÐ½Ð¸Ñ:" << RESET << endl;
                     //tree.output()
                     //cout << endl;
-                    cout << BLUE << "Ââåäèòå ÷èñëî äëÿ óäàëåíèÿ: " << RESET;
+                    cout << BLUE << "Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ Ñ‡Ð¸ÑÐ»Ð¾ Ð´Ð»Ñ ÑƒÐ´Ð°Ð»ÐµÐ½Ð¸Ñ: " << RESET;
                     int value;
                     if (cin >> value) {
                         clear_stream();
                         clear_screen();
                         int tree_time_operation = tree_delete_element(tree, value);
-                        //cout << RED << "ÀÂË-äåðåâî ïîñëå èçìåíåíèÿ:" << RESET << endl;
+                        //cout << RED << "ÐÐ’Ð›-Ð´ÐµÑ€ÐµÐ²Ð¾ Ð¿Ð¾ÑÐ»Ðµ Ð¸Ð·Ð¼ÐµÐ½ÐµÐ½Ð¸Ñ:" << RESET << endl;
                         //tree.output()
                         //cout << endl;
-                        cout << GREEN << "Âðåìÿ óäàëåíèÿ ýëåìåíòà: " << RED << tree_time_operation << " íñ" << RESET << endl;
-                        //cout << GREEN << "Âðåìÿ áàëàíñèðîâêè äåðåâà: " << RED << " íñ" << RESET;
+                        cout << GREEN << "Ð’Ñ€ÐµÐ¼Ñ ÑƒÐ´Ð°Ð»ÐµÐ½Ð¸Ñ ÑÐ»ÐµÐ¼ÐµÐ½Ñ‚Ð°: " << RED << tree_time_operation << " Ð½Ñ" << RESET << endl;
+                        //cout << GREEN << "Ð’Ñ€ÐµÐ¼Ñ Ð±Ð°Ð»Ð°Ð½ÑÐ¸Ñ€Ð¾Ð²ÐºÐ¸ Ð´ÐµÑ€ÐµÐ²Ð°: " << RED << " Ð½Ñ" << RESET;
                         return;
                     }
                     else {
                         clear_screen();
-                        cout << RED << "Ââåäèòå êîððåêòíî ÷èñëî!\n" << RESET << endl;
+                        cout << RED << "Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ ÐºÐ¾Ñ€Ñ€ÐµÐºÑ‚Ð½Ð¾ Ñ‡Ð¸ÑÐ»Ð¾!\n" << RESET << endl;
                         error_detention();
                     }
                 }
@@ -215,7 +215,7 @@ void tree_operations_menu(AvlTree& tree) {
             case 3: {
                 while (true) {
                     clear_screen();
-                    cout << BLUE << "Ââåäèòå ÷èñëî äëÿ ïîèñêà: " << RESET;
+                    cout << BLUE << "Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ Ñ‡Ð¸ÑÐ»Ð¾ Ð´Ð»Ñ Ð¿Ð¾Ð¸ÑÐºÐ°: " << RESET;
                     int value;
                     if (cin >> value) {
                         clear_stream();
@@ -223,12 +223,12 @@ void tree_operations_menu(AvlTree& tree) {
                         cout << endl;
                         int tree_time_operation = tree_search_element(tree, value);
                         cout << endl;
-                        cout << GREEN << "Âðåìÿ ïîèñêà ýëåìåíòà: " << RED << tree_time_operation << " íñ" << RESET << endl;
+                        cout << GREEN << "Ð’Ñ€ÐµÐ¼Ñ Ð¿Ð¾Ð¸ÑÐºÐ° ÑÐ»ÐµÐ¼ÐµÐ½Ñ‚Ð°: " << RED << tree_time_operation << " Ð½Ñ" << RESET << endl;
                         return;
                     }
                     else {
                         clear_screen();
-                        cout << RED << "Ââåäèòå êîððåêòíî ÷èñëî!\n" << RESET << endl;
+                        cout << RED << "Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ ÐºÐ¾Ñ€Ñ€ÐµÐºÑ‚Ð½Ð¾ Ñ‡Ð¸ÑÐ»Ð¾!\n" << RESET << endl;
                         error_detention();
                     }
                 }
@@ -238,7 +238,7 @@ void tree_operations_menu(AvlTree& tree) {
         }
         else {
             clear_screen();
-            cout << RED << "Îøèáêà! Ââåäèòå íîìåð êîìàíäû îò 1 äî 3!\n" << RESET << endl;
+            cout << RED << "ÐžÑˆÐ¸Ð±ÐºÐ°! Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ Ð½Ð¾Ð¼ÐµÑ€ ÐºÐ¾Ð¼Ð°Ð½Ð´Ñ‹ Ð¾Ñ‚ 1 Ð´Ð¾ 3!\n" << RESET << endl;
             error_detention();
         }
     }
@@ -246,23 +246,23 @@ void tree_operations_menu(AvlTree& tree) {
 void tree_tasks_menu(AvlTree& tree) {
     while (true) {
         clear_screen();
-        cout << BLUE << "Ãåíåðàöèÿ çàäàíèé" << RESET << endl;
-        cout << GREEN << "Ââåäèòå êîëè÷åñòâî âàðèàíòîâ äëÿ ãåíåðàöèè: " << RESET;
+        cout << BLUE << "Ð“ÐµÐ½ÐµÑ€Ð°Ñ†Ð¸Ñ Ð·Ð°Ð´Ð°Ð½Ð¸Ð¹" << RESET << endl;
+        cout << GREEN << "Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ ÐºÐ¾Ð»Ð¸Ñ‡ÐµÑÑ‚Ð²Ð¾ Ð²Ð°Ñ€Ð¸Ð°Ð½Ñ‚Ð¾Ð² Ð´Ð»Ñ Ð³ÐµÐ½ÐµÑ€Ð°Ñ†Ð¸Ð¸: " << RESET;
         int num_var;
         if (cin >> num_var && num_var > 0) {
             clear_stream();
             clear_screen();
             //func
-            cout << GREEN << "Óñïåøíî ñîçäàíî " << RED << num_var << GREEN << " âàðèàíòîâ!" << RESET << endl;
-            cout << "\n" << BLUE << "Âàðèàíòû è îòâåòû íàõîäÿòñÿ â ñëåäóþùèõ ôàéëàõ â ïàïêå ïðîåêòà:" << RESET << endl;
-            cout << RED <<"output_task.txt" << BLUE << "  -  âàðèàíòû çàäàíèé" <<RESET << endl;
-            cout << RED << "output_key.txt" << BLUE << "   -  èòîãîâûå îòâåòû" << RESET << endl;
-            cout << RED << "output_ans.txt" << BLUE << "   -  ðàñøèðåííûå îòâåòû" << RESET << endl;
+            cout << GREEN << "Ð£ÑÐ¿ÐµÑˆÐ½Ð¾ ÑÐ¾Ð·Ð´Ð°Ð½Ð¾ " << RED << num_var << GREEN << " Ð²Ð°Ñ€Ð¸Ð°Ð½Ñ‚Ð¾Ð²!" << RESET << endl;
+            cout << "\n" << BLUE << "Ð’Ð°Ñ€Ð¸Ð°Ð½Ñ‚Ñ‹ Ð¸ Ð¾Ñ‚Ð²ÐµÑ‚Ñ‹ Ð½Ð°Ñ…Ð¾Ð´ÑÑ‚ÑÑ Ð² ÑÐ»ÐµÐ´ÑƒÑŽÑ‰Ð¸Ñ… Ñ„Ð°Ð¹Ð»Ð°Ñ… Ð² Ð¿Ð°Ð¿ÐºÐµ Ð¿Ñ€Ð¾ÐµÐºÑ‚Ð°:" << RESET << endl;
+            cout << RED <<"output_task.txt" << BLUE << "  -  Ð²Ð°Ñ€Ð¸Ð°Ð½Ñ‚Ñ‹ Ð·Ð°Ð´Ð°Ð½Ð¸Ð¹" <<RESET << endl;
+            cout << RED << "output_key.txt" << BLUE << "   -  Ð¸Ñ‚Ð¾Ð³Ð¾Ð²Ñ‹Ðµ Ð¾Ñ‚Ð²ÐµÑ‚Ñ‹" << RESET << endl;
+            cout << RED << "output_ans.txt" << BLUE << "   -  Ñ€Ð°ÑÑˆÐ¸Ñ€ÐµÐ½Ð½Ñ‹Ðµ Ð¾Ñ‚Ð²ÐµÑ‚Ñ‹" << RESET << endl;
             return;
         }
         else {
             clear_screen();
-            cout << RED << "Îøèáêà! Ââåäèòå ÷èñëî áîëüøå 0!\n" << RESET << endl;
+            cout << RED << "ÐžÑˆÐ¸Ð±ÐºÐ°! Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ Ñ‡Ð¸ÑÐ»Ð¾ Ð±Ð¾Ð»ÑŒÑˆÐµ 0!\n" << RESET << endl;
             error_detention();
         }
     }
