@@ -2,23 +2,29 @@
 using namespace std;
 
 // Работа с деревом
-struct Node {	
-	int value;
-	int height;
-	Node* left;
-	Node* right;
 
-	Node(int data) : value(data), height(0), left(nullptr), right(nullptr){}
-};
+//private
+void AvlTree::clear(Node* root) {
+      if(root != nullptr)	    	       
+      {					
+          clear(root->left);
+          clear(root->right);
+          delete root;			
+      }
+}
 
-class AvlTree {
-	private:
-		Node* root;
+//public
+AvlTree::AvlTree() : root(nullptr) {}
 
-	public:
-		AvlTree() : root(nullptr) {};
+AvlTree::~AvlTree() {
+	clear(root);
+}
 
-		~AvlTree() {
-			//clear(root);
-		}
-};
+bool AvlTree::is_created() {
+    return root != nullptr;
+}
+
+void AvlTree::clear_all() {
+    clear(root);
+    root = nullptr;
+}

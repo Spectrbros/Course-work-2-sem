@@ -7,8 +7,9 @@ using namespace std;
 int main() {
     setlocale(0, "");
     AvlTree tree;
-    while (true) {
-        print_menu(tree);
+    bool is_should_exit = 0;
+    while (!is_should_exit) {
+        print_menu(tree, is_should_exit);
     }
     return 0;
 }

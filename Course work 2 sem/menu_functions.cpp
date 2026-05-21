@@ -12,7 +12,7 @@ int tree_create_random(AvlTree& tree, int num_elements) {
     auto start = steady_clock::now();
     
     for (int i = 0; i < num_elements; i++) {
-        //tree.add(rand() % 199 - 99)
+        //tree.insert(rand() % 199 - 99)
     }
 
     auto end = steady_clock::now();
@@ -26,7 +26,7 @@ int tree_create_hand(AvlTree& tree,vector<int>& elements) {
     auto start = steady_clock::now();
 
     for (int i = 0; i < elements.size(); i++) {
-        //tree.add(elements[i])
+        //tree.insert(elements[i])
     }
 
     auto end = steady_clock::now();
@@ -36,13 +36,13 @@ int tree_create_hand(AvlTree& tree,vector<int>& elements) {
 }
 
 int tree_insert_element(AvlTree& tree, int value) {
-
+    return 0;
 }
 
 int tree_delete_element(AvlTree& tree, int value) {
-
+    return 0;
 }
 
 int tree_search_element(AvlTree& tree, int value) {
-
+    return 0;
 }

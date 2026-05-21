@@ -9,7 +9,7 @@
 
 // Служебные функции
 void separation();
-void stream_clear();
+void clear_stream();
 void waiting();
 void error_detention();
 void clear_screen();

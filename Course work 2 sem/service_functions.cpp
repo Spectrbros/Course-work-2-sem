@@ -8,7 +8,7 @@ void separation() {
     cout << "\n";
 }
 
-void stream_clear() {
+void clear_stream() {
     cin.clear();
     cin.ignore(10000, '\n');
 }
@@ -21,7 +21,7 @@ void waiting() {
 }
 
 void error_detention() {
-    stream_clear();
+    clear_stream();
     separation();
     separation();
     cout << RED << "Нажмите Enter для продолжения..." << RESET << endl;
