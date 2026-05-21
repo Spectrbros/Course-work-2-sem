@@ -1,4 +1,6 @@
 ﻿#include "avl_tree.h"
+#include <iostream>
+#include <fstream>
 #include <chrono>
 using namespace std;
 using namespace chrono;
@@ -6,6 +8,58 @@ using namespace chrono;
 //Работа с деревом
 
 //private
+
+void AvlTree::show_trunk(Trunk* p, string mode, ofstream& file) {
+    if (p == nullptr) return;
+    show_trunk(p->prev, mode, file);
+
+    if (mode == "console") {
+        cout << p->str;
+    }
+    else if (mode == "file") {
+        file << p->str;
+    }
+}
+
+void AvlTree::print_tree(Node* root, Trunk* prev, bool is_right, string mode, ofstream& file) {
+    if (root == nullptr) return;
+
+    string prev_str = "    ";
+    Trunk* tmp = new Trunk(prev, prev_str);
+
+    print_tree(root->right, tmp, true, mode, file);
+
+    if (!prev) {
+        tmp->str = "-->";
+    }
+    else if (is_right) {
+        tmp->str = ".-->";
+        prev_str = "   |";
+    }
+    else {
+        tmp->str = "`-->";
+        prev->str = prev_str;
+    }
+
+    show_trunk(tmp, mode, file);
+
+    if (mode == "console") {
+        cout << root->value << endl;
+    }
+    else if (mode == "file") {
+        file << root->value << endl;
+    }
+
+    if (prev) {
+        prev->str = prev_str;
+    }
+    tmp->str = "   |";
+
+    print_tree(root->left, tmp, false, mode, file);
+
+    delete tmp;
+}
+
 void AvlTree::clear(Node* root) {
       if(root != nullptr)	    	       
       {					
@@ -34,11 +88,11 @@ AvlTree::~AvlTree() {
 	clear(root);
 }
 
-void print() {
-
+void AvlTree::print(string mode, ofstream& file) {
+    print_tree(root, nullptr, false, mode, file);
 }
 
-int insert(int value) {
+int AvlTree::insert(int value) {
     auto start = steady_clock::now();
 
     //func
@@ -48,7 +102,7 @@ int insert(int value) {
     return result.count();
 }
 
-int remove(int value) {
+int AvlTree::remove(int value) {
     auto start = steady_clock::now();
 
     //func

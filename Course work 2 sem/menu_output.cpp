@@ -2,6 +2,8 @@
 #include "menu_functions.h"
 #include "menu_output.h"
 #include "avl_tree.h"
+#include <iostream>
+#include <fstream>
 #include <vector>
 using namespace std;
 
@@ -144,7 +146,8 @@ void print_tree_menu(AvlTree& tree) {
     return;
     }
     cout << BLUE << "Текущее АВЛ-дерево:" << RESET << endl;
-    //tree.print()
+    ofstream temp;
+    tree.print("console", temp);
 }
 
 void tree_operations_menu(AvlTree& tree) {

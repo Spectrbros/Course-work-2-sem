@@ -1,4 +1,8 @@
 ﻿#pragma once
+#include <string>
+#include <fstream>
+using namespace std;
+
 struct Node {
 	int value;
 	int height;
@@ -8,9 +12,18 @@ struct Node {
 	Node(int data) : value(data), height(0), left(nullptr), right(nullptr) {}
 };
 
+struct Trunk {
+	Trunk* prev;
+	string str;
+	Trunk(Trunk* prev, string str) : prev(prev), str(str) {}
+};
+
 class AvlTree {
 private:
 	Node* root;
+
+	void show_trunk(Trunk* p, string mode, ofstream& file);
+	void print_tree(Node* root, Trunk* prev, bool is_right, string mode, ofstream& file);
 
 	void clear(Node* root);
 	Node* search_element(int value, Node* root);
@@ -19,9 +32,9 @@ public:
 	AvlTree();
 	~AvlTree();
 
-	void print();
-	void insert(int value);
-	void remove(int value);
+	void print(string mode, ofstream& file);
+	int insert(int value);
+	int remove(int value);
 	int search(int value);
 
 	bool is_created();
