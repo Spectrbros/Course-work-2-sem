@@ -1,9 +1,9 @@
-#include "service_functions.h"
+п»ї#include "service_functions.h"
 #include <chrono>
 using namespace std;
 using namespace chrono;
 
-// Служебные функции
+// РЎР»СѓР¶РµР±РЅС‹Рµ С„СѓРЅРєС†РёРё
 void separation() {
     cout << "\n";
 }
@@ -16,7 +16,7 @@ void clear_stream() {
 void waiting() {
     separation();
     separation();
-    cout << RED << "Нажмите Enter для продолжения..." << RESET << endl;
+    cout << RED << "РќР°Р¶РјРёС‚Рµ Enter РґР»СЏ РїСЂРѕРґРѕР»Р¶РµРЅРёСЏ..." << RESET << endl;
     cin.get();
 }
 
@@ -24,7 +24,7 @@ void error_detention() {
     clear_stream();
     separation();
     separation();
-    cout << RED << "Нажмите Enter для продолжения..." << RESET << endl;
+    cout << RED << "РќР°Р¶РјРёС‚Рµ Enter РґР»СЏ РїСЂРѕРґРѕР»Р¶РµРЅРёСЏ..." << RESET << endl;
     cin.get();
 }
 

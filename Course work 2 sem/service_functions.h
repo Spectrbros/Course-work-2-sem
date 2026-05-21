@@ -1,13 +1,13 @@
-#pragma once
+п»ї#pragma once
 #include <iostream>
 
-// Цвета текста
+// Р¦РІРµС‚Р° С‚РµРєСЃС‚Р°
 #define RESET   "\033[0m"
 #define RED     "\033[31m"
 #define GREEN   "\033[32m"
 #define BLUE    "\033[34m"
 
-// Служебные функции
+// РЎР»СѓР¶РµР±РЅС‹Рµ С„СѓРЅРєС†РёРё
 void separation();
 void clear_stream();
 void waiting();

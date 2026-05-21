@@ -1,7 +1,7 @@
-#include "avl_tree.h"
+п»ї#include "avl_tree.h"
 using namespace std;
 
-// Работа с деревом
+// Р Р°Р±РѕС‚Р° СЃ РґРµСЂРµРІРѕРј
 
 //private
 void AvlTree::clear(Node* root) {

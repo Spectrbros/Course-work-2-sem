@@ -1,9 +1,9 @@
-#include "service_functions.h"
+п»ї#include "service_functions.h"
 #include "menu_output.h"
 #include "avl_tree.h"
 using namespace std;
 
-// Главная функция
+// Р“Р»Р°РІРЅР°СЏ С„СѓРЅРєС†РёСЏ
 int main() {
     setlocale(0, "");
     AvlTree tree;

@@ -1,10 +1,10 @@
-#pragma once
+п»ї#pragma once
 #include <iostream>
 #include <iomanip>
 #include <string>  
 #include "avl_tree.h"
 
-// Функции меню
+// Р¤СѓРЅРєС†РёРё РјРµРЅСЋ
 void print_menu(AvlTree& tree, bool& is_should_exit);
 void lab_page();
 void command_choice(AvlTree& tree, bool& is_should_exit);
