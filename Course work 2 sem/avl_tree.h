@@ -13,16 +13,17 @@ private:
 	Node* root;
 
 	void clear(Node* root);
+	Node* search_element(int value, Node* root);
+
 public:
 	AvlTree();
-	
+	~AvlTree();
+
 	void print();
 	void insert(int value);
 	void remove(int value);
-	void search(int value);
-	void check_balance();
+	int search(int value);
+
 	bool is_created();
 	void clear_all();
-
-	~AvlTree();
 };

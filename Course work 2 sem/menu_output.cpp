@@ -19,7 +19,8 @@ void lab_page() {
     cout << "| " << GREEN << "1) Сформировать дерево" << RESET << "           |" << endl;
     cout << "| " << GREEN << "2) Вывод дерева" << RESET << "                  |" << endl;
     cout << "| " << GREEN << "3) Операции над деревом" << RESET << "          |" << endl;
-    cout << "| " << GREEN << "4) Сгенерировать задания" << RESET << "         |" << endl;
+    cout << "| " << GREEN << "4) Проверка сбалансированности" << RESET << "   |" << endl;
+    cout << "| " << GREEN << "5) Сгенерировать задания" << RESET << "         |" << endl;
     cout << "|                                  |" << endl;
     cout << "| " << RED << "0) Выход и очистка памяти" << RESET << "        |" << endl;
     cout << "|==================================|" << endl;
@@ -37,7 +38,7 @@ void command_choice(AvlTree& tree, bool& is_should_exit) {
     }
     else {
         clear_screen();
-        cout << RED << "Ошибка! Введите номер команды от 0 до 4!\n" << RESET << endl;
+        cout << RED << "Ошибка! Введите корректное число от 0 до 5!\n" << RESET << endl;
         error_detention();
     }
 }
@@ -64,11 +65,15 @@ void menu_commands(AvlTree& tree, int choice, bool& is_should_exit) {
         waiting();
         break;
     case 4:
+        tree_balance_menu(tree);
+        waiting();
+        break;
+    case 5:
         tree_tasks_menu(tree);
         waiting();
         break;
     default:
-        cout << RED << "Ошибка! Введите номер команды от 0 до 4!\n" << RESET << endl;
+        cout << RED << "Ошибка! Введите номер команды от 0 до 5!\n" << RESET << endl;
         waiting();
         break;
     }
@@ -243,6 +248,17 @@ void tree_operations_menu(AvlTree& tree) {
         }
     }
 }
+
+void tree_balance_menu(AvlTree& tree) {
+    if (!tree.is_created()) {
+        cout << RED << "АВЛ-дерево ещё не создано!" << RESET;
+        return;
+    }
+
+    int tree_time_balance = tree_check_balance(tree);
+    cout << GREEN << "Время проверки на сбалансированность: " << RED << tree_time_balance << " нс" << RESET << endl;
+}
+
 void tree_tasks_menu(AvlTree& tree) {
     while (true) {
         clear_screen();
