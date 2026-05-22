@@ -9,7 +9,7 @@ struct Node {
 	Node* left;
 	Node* right;
 
-	Node(int data) : value(data), height(0), left(nullptr), right(nullptr) {}
+	Node(int data) : value(data), height(1), left(nullptr), right(nullptr) {}
 };
 
 struct Trunk {
@@ -20,13 +20,15 @@ struct Trunk {
 
 class AvlTree {
 private:
-	Node* root;
+	Node* root;       // корень дерева
+	int balance_time; // замер времени балансировки для операций: вставка и удаление
 
 	void show_trunk(Trunk* p, string mode, ofstream& file);
 	void print_tree(Node* root, Trunk* prev, bool is_right, string mode, ofstream& file);
 
 	void clear(Node* root);
 	Node* search_element(int value, Node* root);
+	Node* remove_node(Node* p, int value);
 
 	int height(Node* p);
 	int bfactor(Node* p);
@@ -35,15 +37,20 @@ private:
 	Node* rotate_left(Node* q);
 	Node* balance(Node* p);
 	Node* insert_node(Node* p, int value);
+	bool check_balance(Node* p);
 
 public:
 	AvlTree();
 	~AvlTree();
 
 	void print(string mode, ofstream& file);
-	int insert(int value);
-	int remove(int value);
-	int search(int value);
+	void insert(int value);
+	void remove(int value);
+	Node* search(int value);
+	bool is_balance();
+
+	int get_balance_time();
+	void reset_balance_time();
 
 	bool is_created();
 	void clear_all();

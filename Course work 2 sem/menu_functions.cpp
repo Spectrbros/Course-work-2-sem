@@ -34,25 +34,62 @@ int tree_create_hand(AvlTree& tree,vector<int>& elements) {
     return result.count();
 }
 
-int tree_insert_element(AvlTree& tree, int value) {
-    return 0;
+int tree_insert_element(AvlTree& tree, int value, int& balance_time) {
+    auto start = steady_clock::now();
+
+    tree.insert(value);
+
+    auto end = steady_clock::now();
+    auto result = duration_cast<nanoseconds>(end - start);
+    
+    balance_time = tree.get_balance_time();
+    return result.count();
 }
 
-int tree_delete_element(AvlTree& tree, int value) {
-    return 0;
+int tree_remove_element(AvlTree& tree, int value, int& balance_time) {
+    auto start = steady_clock::now();
+
+    tree.remove(value);
+
+    auto end = steady_clock::now();
+    auto result = duration_cast<nanoseconds>(end - start);
+
+    balance_time = tree.get_balance_time();
+    return result.count();
 }
 
 int tree_search_element(AvlTree& tree, int value) {
-    return 0;
+    auto start = steady_clock::now();
+
+    Node* temp = tree.search(value);
+
+    auto end = steady_clock::now();
+    auto result = duration_cast<nanoseconds>(end - start);
+
+    if (temp) {
+        cout << GREEN << "Число " << RED << value << GREEN << " найдено в дереве!" << RESET << endl;
+    }
+    else {
+        cout << RED << "Число не найдено в дереве!" << RESET << endl;
+    }
+
+    return result.count();
 }
 
 int tree_check_balance(AvlTree& tree) {
     auto start = steady_clock::now();
 
-    //tree.is_balance();
+    bool temp = tree.is_balance();
 
     auto end = steady_clock::now();
     auto result = duration_cast<nanoseconds>(end - start);
+
+    if (temp) {
+        cout << GREEN << "Дерево сбалансировано!" << RESET << endl;
+    }
+    else {
+        cout << RED << "Дерево не сбалансировано!" << RESET << endl;
+    }
 
     return result.count();
 }
