@@ -81,6 +81,67 @@ Node* AvlTree::search_element(int value, Node* root) {
         return search_element(value, root->right);
 }
 
+int AvlTree::height(Node* p) {
+    if (p) 
+        return p->height;
+    else
+        return 0;
+}
+
+int AvlTree::bfactor(Node* p) {
+    return height(p->right) - height(p->left);
+}
+
+void AvlTree::fix_height(Node* p) {
+    int hl = height(p->left);
+    int hr = height(p->right);
+    p->height = (hl > hr ? hl : hr) + 1;
+}
+
+Node* AvlTree::rotate_right(Node* p) {
+    Node* q = p->left;
+    p->left = q->right;
+    q->right = p;
+    fix_height(p);
+    fix_height(q);
+    return q;
+}
+
+Node* AvlTree::rotate_left(Node* q) {
+    Node* p = q->right;
+    q->right = p->left;
+    p->left = q;
+    fix_height(q);
+    fix_height(p);
+    return p;
+}
+
+Node* AvlTree::balance(Node* p) {
+    fix_height(p);
+    if (bfactor(p) == 2) {
+        if (bfactor(p->right) < 0)
+            p->right = rotate_right(p->right);
+        return rotate_left(p);
+    }
+    if (bfactor(p) == -2) {
+        if (bfactor(p->left) > 0)
+            p->left = rotate_left(p->left);
+        return rotate_right(p);
+    }
+    return p;
+}
+
+Node* AvlTree::insert_node(Node* p, int value) {
+    if (!p) return new Node(value);
+
+    if (value < p->value)
+        p->left = insert_node(p->left, value);
+    else
+        p->right = insert_node(p->right, value);
+
+    return balance(p);
+}
+
 //public
 AvlTree::AvlTree() : root(nullptr) {}
 
@@ -94,8 +155,8 @@ void AvlTree::print(string mode, ofstream& file) {
 
 int AvlTree::insert(int value) {
     auto start = steady_clock::now();
-
-    //func
+        
+    root = insert_node(root, value);
 
     auto end = steady_clock::now();
     auto result = duration_cast<nanoseconds>(end - start);

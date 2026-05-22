@@ -28,6 +28,14 @@ private:
 	void clear(Node* root);
 	Node* search_element(int value, Node* root);
 
+	int height(Node* p);
+	int bfactor(Node* p);
+	void fix_height(Node* p);
+	Node* rotate_right(Node* p);
+	Node* rotate_left(Node* q);
+	Node* balance(Node* p);
+	Node* insert_node(Node* p, int value);
+
 public:
 	AvlTree();
 	~AvlTree();
