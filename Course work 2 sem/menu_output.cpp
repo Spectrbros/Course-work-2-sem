@@ -283,13 +283,19 @@ void tree_tasks_menu(AvlTree& tree) {
         if (cin >> num_var && num_var > 0) {
             clear_stream();
             clear_screen();
-            //func
-            cout << GREEN << "Успешно создано " << RED << num_var << GREEN << " вариантов!" << RESET << endl;
-            cout << "\n" << BLUE << "Варианты и ответы находятся в следующих файлах в папке проекта:" << RESET << endl;
-            cout << RED <<"output_task.txt" << BLUE << "  -  варианты заданий" <<RESET << endl;
-            cout << RED << "output_key.txt" << BLUE << "   -  итоговые ответы" << RESET << endl;
-            cout << RED << "output_ans.txt" << BLUE << "   -  расширенные ответы" << RESET << endl;
-            return;
+            
+            if (generate_tasks_main(num_var)) {
+                cout << GREEN << "Успешно создано " << RED << num_var << GREEN << " вариантов!" << RESET << endl;
+                cout << "\n" << BLUE << "Варианты и ответы находятся в следующих файлах в папке проекта:" << RESET << endl;
+                cout << RED << "output_task.txt" << BLUE << "  -  варианты заданий" << RESET << endl;
+                cout << RED << "output_key.txt" << BLUE << "   -  итоговые ответы" << RESET << endl;
+                cout << RED << "output_ans.txt" << BLUE << "   -  расширенные ответы" << RESET << endl;
+            }
+            
+            else {
+                cout << RED << "Ошибка открытия файлов для записи!" << RESET << endl;
+                waiting();
+            }
         }
         else {
             clear_screen();
