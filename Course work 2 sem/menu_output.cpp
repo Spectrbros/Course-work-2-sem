@@ -290,11 +290,13 @@ void tree_tasks_menu(AvlTree& tree) {
                 cout << RED << "output_task.txt" << BLUE << "  -  варианты заданий" << RESET << endl;
                 cout << RED << "output_key.txt" << BLUE << "   -  итоговые ответы" << RESET << endl;
                 cout << RED << "output_ans.txt" << BLUE << "   -  расширенные ответы" << RESET << endl;
+                return;
             }
             
             else {
                 cout << RED << "Ошибка открытия файлов для записи!" << RESET << endl;
                 waiting();
+                return;
             }
         }
         else {
