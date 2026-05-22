@@ -8,127 +8,8 @@ using namespace chrono;
 //Работа с деревом
 
 //private
-
-void AvlTree::show_trunk(Trunk* p, string mode, ofstream& file) {
-    if (p == nullptr) return;
-    show_trunk(p->prev, mode, file);
-
-    if (mode == "console") {
-        cout << p->str;
-    }
-    else {
-        if (mode == "file") {
-            file << p->str;
-        }
-    }
-}
-
-void AvlTree::print_tree(Node* root, Trunk* prev, bool is_right, string mode, ofstream& file) {
-    if (root == nullptr) return;
-
-    string prev_str = "    ";
-    Trunk* tmp = new Trunk(prev, prev_str);
-
-    print_tree(root->right, tmp, true, mode, file);
-
-    if (!prev) {
-        tmp->str = "-->";
-    }
-    else {
-        if (is_right) {
-            tmp->str = ".-->";
-            prev_str = "   |";
-        }
-        else {
-            tmp->str = "`-->";
-            prev->str = prev_str;
-        }
-    }
-
-    show_trunk(tmp, mode, file);
-
-    if (mode == "console") {
-        cout << root->value << endl;
-    }
-    else {
-        if (mode == "file") {
-            file << root->value << endl;
-        }
-    }
-
-    if (prev) {
-        prev->str = prev_str;
-    }
-    tmp->str = "   |";
-
-    print_tree(root->left, tmp, false, mode, file);
-
-    delete tmp;
-}
-
-void AvlTree::clear(Node* root) {
-      if(root != nullptr)	    	       
-      {					
-          clear(root->left);
-          clear(root->right);
-          delete root;			
-      }
-}
-
-Node* AvlTree::search_element(int value, Node* root) {
-    if (root == nullptr)
-        return nullptr;
-
-    if (value == root->value)
-        return root;
-    if (value < root->value)
-        return search_element(value, root->left);
-    else
-        return search_element(value, root->right);
-}
-
-Node* AvlTree::remove_node(Node* p, int value) {
-    if (p == nullptr) {
-        return nullptr;
-    }
-
-    if (value < p->value) {
-        p->left = remove_node(p->left, value);
-        return balance(p);
-    }
-
-    if (value > p->value) {
-        p->right = remove_node(p->right, value);
-        return balance(p);
-    }
-
-    Node* left_child = p->left;
-    Node* right_child = p->right;
-
-    if (left_child == nullptr) {
-        delete p;
-        return right_child;
-    }
-
-    if (right_child == nullptr) {
-        delete p;
-        return left_child;
-    }
-
-    Node* max_left = left_child;
-    while (max_left->right != nullptr) {
-        max_left = max_left->right;
-    }
-
-    p->value = max_left->value;
-
-    p->left = remove_node(p->left, max_left->value);
-
-    return balance(p);
-}
-
 int AvlTree::height(Node* p) {
-    if (p) 
+    if (p)
         return p->height;
     else
         return 0;
@@ -198,15 +79,132 @@ Node* AvlTree::insert_node(Node* p, int value) {
     return balance(p);
 }
 
+Node* AvlTree::remove_node(Node* p, int value) {
+    if (p == nullptr) {
+        return nullptr;
+    }
+
+    if (value < p->value) {
+        p->left = remove_node(p->left, value);
+        return balance(p);
+    }
+
+    if (value > p->value) {
+        p->right = remove_node(p->right, value);
+        return balance(p);
+    }
+
+    Node* left_child = p->left;
+    Node* right_child = p->right;
+
+    if (left_child == nullptr) {
+        delete p;
+        return right_child;
+    }
+
+    if (right_child == nullptr) {
+        delete p;
+        return left_child;
+    }
+
+    Node* max_left = left_child;
+    while (max_left->right != nullptr) {
+        max_left = max_left->right;
+    }
+
+    p->value = max_left->value;
+
+    p->left = remove_node(p->left, max_left->value);
+
+    return balance(p);
+}
+
+Node* AvlTree::search_node(int value, Node* root) {
+    if (root == nullptr)
+        return nullptr;
+
+    if (value == root->value)
+        return root;
+    if (value < root->value)
+        return search_node(value, root->left);
+    else
+        return search_node(value, root->right);
+}
+
+void AvlTree::show_trunk(Trunk* p, string mode, ofstream& file) {
+    if (p == nullptr) return;
+
+    show_trunk(p->prev, mode, file);
+
+    if (mode == "console") {
+        cout << p->str;
+    }
+    if (mode == "file") {
+        file << p->str;
+    }
+}
+
+void AvlTree::print_tree(Node* root, Trunk* prev, bool is_right, string mode, ofstream& file) {
+    if (root == nullptr) return;
+
+    string prev_str = "    ";
+    Trunk* tmp = new Trunk(prev, prev_str);
+
+    print_tree(root->right, tmp, true, mode, file);
+
+    if (!prev) {
+        tmp->str = "-->";
+    }
+    else {
+        if (is_right) {
+            tmp->str = ".-->";
+            prev_str = "   |";
+        }
+        else {
+            tmp->str = "`-->";
+            prev->str = prev_str;
+        }
+    }
+
+    show_trunk(tmp, mode, file);
+
+    if (mode == "console") {
+        cout << root->value << endl;
+    }
+    else {
+        if (mode == "file") {
+            file << root->value << endl;
+        }
+    }
+
+    if (prev) {
+        prev->str = prev_str;
+    }
+    tmp->str = "   |";
+
+    print_tree(root->left, tmp, false, mode, file);
+
+    delete tmp;
+}
+
 bool AvlTree::check_balance(Node* p) {
     if (p == nullptr) return true;
 
     int factor = bfactor(p);
     if (factor < -1 || factor > 1) {
-        return false; 
+        return false;
     }
 
     return check_balance(p->left) && check_balance(p->right);
+}
+
+void AvlTree::clear(Node* root) {
+      if(root != nullptr)	    	       
+      {					
+          clear(root->left);
+          clear(root->right);
+          delete root;			
+      }
 }
 
 //public
@@ -214,10 +212,6 @@ AvlTree::AvlTree() : root(nullptr), balance_time(0) {}
 
 AvlTree::~AvlTree() {
 	clear(root);
-}
-
-void AvlTree::print(string mode, ofstream& file) {
-    print_tree(root, nullptr, false, mode, file);
 }
 
 void AvlTree::insert(int value) {
@@ -231,7 +225,15 @@ void AvlTree::remove(int value) {
 }
 
 Node* AvlTree::search(int value) {
-    return search_element(value, root);
+    return search_node(value, root);
+}
+
+void AvlTree::print(string mode, ofstream& file) {
+    print_tree(root, nullptr, false, mode, file);
+}
+
+bool AvlTree::is_created() {
+    return root != nullptr;
 }
 
 bool AvlTree::is_balance() {
@@ -244,10 +246,6 @@ int AvlTree::get_balance_time() {
 
 void AvlTree::reset_balance_time() {
     balance_time = 0;
-}
-
-bool AvlTree::is_created() {
-    return root != nullptr;
 }
 
 void AvlTree::clear_all() {
